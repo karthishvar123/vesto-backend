@@ -28,7 +28,8 @@ export default function EditProductPage({ params }: { params: Promise<{ id: stri
         productStyle: "",
         activityType: "",
         baseColor: "",
-        colorFamily: ""
+        colorFamily: "",
+        affiliateLink: ""
     });
 
     // Unwrap params using React 19's use() hook for Next.js 15+
@@ -60,7 +61,8 @@ export default function EditProductPage({ params }: { params: Promise<{ id: stri
                         productStyle: data.productStyle || "",
                         activityType: data.activityType || "",
                         baseColor: data.baseColor || "",
-                        colorFamily: data.colorFamily || ""
+                        colorFamily: data.colorFamily || "",
+                        affiliateLink: data.affiliateLink || ""
                     });
                 } else {
                     toast.error("Product not found");

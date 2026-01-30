@@ -24,7 +24,8 @@ export default function AddProductPage() {
         productStyle: "",
         activityType: "",
         baseColor: "",
-        colorFamily: ""
+        colorFamily: "",
+        affiliateLink: ""
     });
 
     const handleSave = async () => {

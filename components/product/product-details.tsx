@@ -39,6 +39,16 @@ export function ProductDetails({ formData, setFormData }: ProductDetailsProps) {
                     </div>
 
                     <div className="space-y-2">
+                        <Label htmlFor="affiliateLink">Affiliate Link</Label>
+                        <Input
+                            id="affiliateLink"
+                            placeholder="e.g. https://amazon.com/..."
+                            value={formData.affiliateLink || ""}
+                            onChange={handleChange}
+                        />
+                    </div>
+
+                    <div className="space-y-2">
                         <Label htmlFor="description">Description</Label>
                         <textarea
                             id="description"
