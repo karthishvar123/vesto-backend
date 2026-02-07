@@ -9,6 +9,8 @@ import { toast } from "sonner";
 import { useState } from "react";
 import { db } from "@/lib/firebase";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { signInAnonymously } from "firebase/auth";
+import { auth } from "@/lib/firebase";
 import { useRouter } from "next/navigation";
 
 export default function AddProductPage() {
@@ -36,6 +38,11 @@ export default function AddProductPage() {
 
         setLoading(true);
         try {
+            // Ensure authenticated
+            if (!auth.currentUser) {
+                await signInAnonymously(auth);
+            }
+
             await addDoc(collection(db, "products"), {
                 ...formData,
                 price: parseFloat(formData.price),

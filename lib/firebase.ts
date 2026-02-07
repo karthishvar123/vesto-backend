@@ -1,9 +1,10 @@
 import { initializeApp, getApps, getApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
+import { getAuth } from "firebase/auth";
 import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDQLRkD0bGadN9dOnr0KYpF041H0nJ8-WY",
+    apiKey: "AIzaSyChFWneIyBsWRLEY5f8jbNIygI4f-RyqFQ",
     authDomain: "vesto-9eb76.firebaseapp.com",
     projectId: "vesto-9eb76",
     storageBucket: "vesto-9eb76.firebasestorage.app",
@@ -16,5 +17,6 @@ const firebaseConfig = {
 const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
 const db = getFirestore(app);
 const storage = getStorage(app);
+const auth = getAuth(app);
 
-export { db, storage };
+export { db, storage, auth };
