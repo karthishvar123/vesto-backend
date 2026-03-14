@@ -118,6 +118,7 @@ export function ProductOrganization({ formData, setFormData }: ProductOrganizati
                             <option value="earthy">Earthy</option>
                             <option value="cool">Cool</option>
                             <option value="warm">Warm</option>
+                            <option value="multicolour">Multicolour</option>
                         </Select>
                     </div>
 
@@ -189,11 +190,14 @@ export function ProductOrganization({ formData, setFormData }: ProductOrganizati
                                 { value: "saffron", label: "Saffron", color: "#F4C430" },
                                 { value: "ochre", label: "Ochre", color: "#CC7722" },
                                 { value: "amber", label: "Amber", color: "#FFBF00" },
+                                // Multicolour
+                                { value: "multicolour", label: "Multicolour", color: "#888888" },
                             ].filter(opt => {
                                 if (formData.baseColor === 'neutral') return ["black", "white", "off-white", "ivory", "grey", "charcoal", "stone", "ash", "cream", "ecru", "taupe", "mushroom", "sand", "pebble", "smoke", "silver"].includes(opt.value);
                                 if (formData.baseColor === 'earthy') return ["olive", "khaki", "beige", "tan", "camel", "brown", "mocha", "coffee", "chocolate", "bark", "clay", "soil", "walnut", "cork", "latte"].includes(opt.value);
                                 if (formData.baseColor === 'cool') return ["navy", "midnight-blue", "indigo", "blue", "light-blue", "teal", "steel-blue", "slate-blue", "denim", "ice-blue", "sky-blue", "cyan"].includes(opt.value);
                                 if (formData.baseColor === 'warm') return ["maroon", "burgundy", "rust", "terracotta", "mustard", "brick", "wine", "copper", "paprika", "saffron", "ochre", "amber"].includes(opt.value);
+                                if (formData.baseColor === 'multicolour') return ["multicolour"].includes(opt.value);
                                 return false;
                             })}
                         />
