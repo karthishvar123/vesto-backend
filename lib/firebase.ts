@@ -4,13 +4,13 @@ import { getAuth } from "firebase/auth";
 import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyChFWneIyBsWRLEY5f8jbNIygI4f-RyqFQ",
-    authDomain: "vesto-9eb76.firebaseapp.com",
-    projectId: "vesto-9eb76",
-    storageBucket: "vesto-9eb76.firebasestorage.app",
-    messagingSenderId: "297025085510",
-    appId: "1:297025085510:web:64e7d823abcebde8dd6a47",
-    measurementId: "G-62508YYZHX"
+    apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+    authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+    projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+    storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+    appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+    measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 };
 
 // Initialize Firebase (Singleton pattern)

@@ -11,6 +11,42 @@ interface ProductOrganizationProps {
     setFormData: (data: any) => void;
 }
 
+const BRANDS = [
+    "Bewakoof", "US Polo Assn.", "Peter England", "Allen Solly", "Van Heusen",
+    "Louis Philippe", "Raymond", "Park Avenue", "Arrow", "Blackberrys",
+    "H&M", "Zara", "Mango", "Only", "Jack & Jones", "Celio", "Being Human",
+    "Puma", "Nike", "Adidas", "Reebok", "Wildcraft", "Decathlon", "WROGN",
+    "Dennis Lingo", "Highlander", "Roadster", "HRX", "Tommy Hilfiger", "United Colors of Benetton",
+];
+
+const BASE_COLOR_SKIN_HINT: Record<string, { tones: string; fitzpatrick: string; note: string }> = {
+    neutral: {
+        tones: "All Skin Tones",
+        fitzpatrick: "Types 1–6",
+        note: "Blacks, whites, greys and creams are universally flattering.",
+    },
+    cool: {
+        tones: "Fair to Light",
+        fitzpatrick: "Types 1–2",
+        note: "Blues, navys and teals complement cool-undertone fair skin.",
+    },
+    earthy: {
+        tones: "Light Medium to Medium",
+        fitzpatrick: "Types 3–4",
+        note: "Olives, khakis and browns look rich on warm-medium complexions.",
+    },
+    warm: {
+        tones: "Medium Brown to Dark",
+        fitzpatrick: "Types 4–6",
+        note: "Rusts, mustards and terracottas pop beautifully on deeper skin.",
+    },
+    multicolour: {
+        tones: "All Skin Tones",
+        fitzpatrick: "Types 1–6",
+        note: "Multicolour pieces work across all complexions.",
+    },
+};
+
 export function ProductOrganization({ formData, setFormData }: ProductOrganizationProps) {
 
     const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -21,6 +57,8 @@ export function ProductOrganization({ formData, setFormData }: ProductOrganizati
     const handleSwitchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setFormData({ ...formData, active: e.target.checked });
     };
+
+    const colorHint = formData.baseColor ? BASE_COLOR_SKIN_HINT[formData.baseColor] : null;
 
     return (
         <div className="space-y-8">
@@ -33,7 +71,7 @@ export function ProductOrganization({ formData, setFormData }: ProductOrganizati
                     <div className="flex items-center justify-between">
                         <div className="space-y-0.5">
                             <Label className="text-base">Active</Label>
-                            <p className="text-sm text-gray-500">Product will be available for purchase.</p>
+                            <p className="text-sm text-gray-500">Product will be visible in the storefront.</p>
                         </div>
                         <Switch
                             checked={formData.active}
@@ -101,6 +139,16 @@ export function ProductOrganization({ formData, setFormData }: ProductOrganizati
                     </div>
 
                     <div className="space-y-2">
+                        <Label>Brand</Label>
+                        <Select id="brand" value={formData.brand || ""} onChange={handleChange}>
+                            <option value="">Select Brand</option>
+                            {BRANDS.map(b => (
+                                <option key={b} value={b}>{b}</option>
+                            ))}
+                        </Select>
+                    </div>
+
+                    <div className="space-y-2">
                         <Label>Activity Type</Label>
                         <Select id="activityType" value={formData.activityType} onChange={handleChange}>
                             <option value="">Select Activity</option>
@@ -111,15 +159,30 @@ export function ProductOrganization({ formData, setFormData }: ProductOrganizati
                     </div>
 
                     <div className="space-y-2">
-                        <Label>Base Color</Label>
+                        <Label>
+                            Base Color{" "}
+                            <span className="text-xs font-normal text-gray-400 ml-1">
+                                — the overall color family (used for skin-tone filtering)
+                            </span>
+                        </Label>
                         <Select id="baseColor" value={formData.baseColor} onChange={handleChange}>
                             <option value="">Select Category</option>
-                            <option value="neutral">Neutral</option>
-                            <option value="earthy">Earthy</option>
-                            <option value="cool">Cool</option>
-                            <option value="warm">Warm</option>
+                            <option value="neutral">Neutral (black, white, grey, cream)</option>
+                            <option value="earthy">Earthy (olive, khaki, brown, tan)</option>
+                            <option value="cool">Cool (navy, blue, teal, indigo)</option>
+                            <option value="warm">Warm (rust, mustard, terracotta, maroon)</option>
                             <option value="multicolour">Multicolour</option>
                         </Select>
+
+                        {/* Skin tone hint card */}
+                        {colorHint && (
+                            <div className="mt-2 bg-amber-50 border border-amber-200 rounded-lg p-3 text-xs">
+                                <div className="font-semibold text-amber-800 mb-0.5">
+                                    ✦ Recommended for: {colorHint.tones} ({colorHint.fitzpatrick})
+                                </div>
+                                <div className="text-amber-700">{colorHint.note}</div>
+                            </div>
+                        )}
                     </div>
 
                     <div className="space-y-2">
